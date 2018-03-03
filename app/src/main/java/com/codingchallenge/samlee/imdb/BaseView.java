@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package com.codingchallenge.samlee.simpleimdb;
+package com.codingchallenge.samlee.imdb;
 
 public interface BaseView<T> {
-
+    void setPresenter(T presenter);
 }
