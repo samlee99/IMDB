@@ -1,6 +1,7 @@
 package com.codingchallenge.samlee.imdb.movie;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -18,6 +19,8 @@ import com.codingchallenge.samlee.imdb.R;
  */
 
 public class MovieActivity extends AppCompatActivity {
+
+    private MoviePresenter mMoviePresenter;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +40,15 @@ public class MovieActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
+        mMoviePresenter = new MoviePresenter(movieFragment);
 
+        // TODO: Load saved state if available
+    }
+
+    // TODO: Save state when changing orientation
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override
