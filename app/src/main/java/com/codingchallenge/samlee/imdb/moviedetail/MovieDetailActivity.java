@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.codingchallenge.samlee.imdb.R;
+import com.codingchallenge.samlee.imdb.model.Movie;
 
 /**
  * Created by Sam on 3/4/2018.
@@ -23,6 +24,8 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Movie movie = (Movie)getIntent().getSerializableExtra("movieObject");
 
         MovieDetailFragment movieDetailFragment = (MovieDetailFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
 

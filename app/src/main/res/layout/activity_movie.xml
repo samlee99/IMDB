@@ -20,8 +20,6 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </android.support.design.widget.AppBarLayout>
 
-
-
     <FrameLayout
         android:id="@+id/contentFrame"
         android:layout_marginTop="10dp"

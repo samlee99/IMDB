@@ -1,5 +1,7 @@
 package com.codingchallenge.samlee.imdb.movie;
 
+import android.content.AsyncTaskLoader;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -26,6 +28,7 @@ import java.util.List;
 public class MovieActivity extends AppCompatActivity {
 
     private MoviePresenter mMoviePresenter;
+    private MovieFragment mMovieFragment;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,23 +37,21 @@ public class MovieActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        MovieFragment movieFragment = (MovieFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        mMovieFragment = (MovieFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
 
-        if (movieFragment == null) {
+        if (mMovieFragment == null) {
             //Create the fragment
-            movieFragment = MovieFragment.newInstance();
+            mMovieFragment = MovieFragment.newInstance();
 
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.contentFrame, movieFragment);
+            fragmentTransaction.add(R.id.contentFrame, mMovieFragment);
             fragmentTransaction.commit();
         }
 
-        mMoviePresenter = new MoviePresenter(movieFragment);
+        mMoviePresenter = new MoviePresenter(mMovieFragment);
 
-        // TODO: Load saved state if available
     }
 
-    // TODO: Save state when changing orientation
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -66,8 +67,7 @@ public class MovieActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                // TODO: Implement the refresh functionality where it calls the API to refresh the recyclerview.  Should not break during orientation change.
-                Toast.makeText(this, "Refresh testing!", Toast.LENGTH_SHORT).show();
+                mMoviePresenter.refreshListClick();
                 return true;
         }
         return true;
