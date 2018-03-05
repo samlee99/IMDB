@@ -6,6 +6,12 @@ package com.codingchallenge.samlee.imdb.moviedetail;
 
 public class MovieDetailPresenter implements MovieDetailContract.Presenter {
 
+    private MovieDetailContract.View mMovieDetailView;
+
+    public MovieDetailPresenter(MovieDetailContract.View view) {
+        this.mMovieDetailView = view;
+    }
+
     @Override
     public void start() {
 

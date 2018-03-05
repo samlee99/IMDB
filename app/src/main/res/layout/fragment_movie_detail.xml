@@ -28,14 +28,14 @@
                 <TextView
                     android:id="@+id/movieRuntimeAndRatedTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="2hr 31min | R"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:textSize="16sp"/>
+                    android:textSize="15sp"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                         android:text="Genre: "
                         android:textColor="@android:color/black"
                         android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:gravity="center_vertical"
                         android:layout_alignTop="@+id/movieGenreTextView"/>
 
@@ -61,14 +61,14 @@
                         android:paddingEnd="20dp"
                         android:text="Comedy, Action, Romance"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@+id/genreTextView"/>
                 </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -79,7 +79,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@android:color/black"
                         android:textStyle="bold"
-                        android:textSize="16sp"/>
+                        android:textSize="15sp"/>
 
                     <TextView
                         android:id="@+id/movieDirectorTextView"
@@ -89,34 +89,37 @@
                         android:text="Some guy"
                         android:gravity="center_vertical"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp"/>
+                        android:textSize="15sp"/>
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/languageTextView"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:paddingStart="10dp"
                         android:text="Language: "
-                        android:gravity="center_vertical"
                         android:textColor="@android:color/black"
                         android:textStyle="bold"
-                        android:textSize="16sp"/>
+                        android:textSize="15sp"
+                        android:gravity="center_vertical"
+                        android:layout_alignTop="@+id/movieLanguageTextView"/>
 
                     <TextView
                         android:id="@+id/movieLanguageTextView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:paddingEnd="20dp"
-                        android:text="English"
-                        android:gravity="center_vertical"
+                        android:text="Comedy, Action, Romance"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp"/>
-                </LinearLayout>
+                        android:textSize="15sp"
+                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@+id/languageTextView"/>
+                </RelativeLayout>
 
             </LinearLayout>
 

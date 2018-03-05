@@ -24,6 +24,8 @@ public class JsonAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
 
     private static final String TAG = "JsonAsyncTaskLoader";
 
+    private List<Movie> movies;
+
     public JsonAsyncTaskLoader(Context context) {
         super(context);
     }
@@ -31,7 +33,11 @@ public class JsonAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
     @Override
     protected void onStartLoading() {
         Log.d(TAG, "onStartLoading() called");
-        forceLoad();
+        if (movies != null) {
+            deliverResult(movies);
+        } else {
+            forceLoad();
+        }
     }
 
     @Override
@@ -41,7 +47,7 @@ public class JsonAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
         String url = "http://api.myapifilms.com/imdb/inTheaters?token=159ab6ca-37ea-4351-ba42-9ef903beacc3&format=json&language=en-us";
         String json = NetworkUtil.getJSON(url);
 
-        List<Movie> movies = new ArrayList<>();
+        movies = new ArrayList<>();
 
         Gson gson = new Gson();
         Result result = gson.fromJson(json, Result.class);
@@ -64,6 +70,7 @@ public class JsonAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
     @Override
     public void deliverResult(List<Movie> data) {
         Log.d(TAG, "deliverResult called");
+        movies = data;
         super.deliverResult(data);
     }
 }

@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.codingchallenge.samlee.imdb.R;
 import com.codingchallenge.samlee.imdb.model.Movie;
@@ -15,7 +17,7 @@ import com.codingchallenge.samlee.imdb.model.Movie;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
-
+    private MovieDetailPresenter mMovieDetailPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,8 +40,27 @@ public class MovieDetailActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
-//        mMoviePresenter = new MoviePresenter(movieDetailFragment);
+        mMovieDetailPresenter = new MovieDetailPresenter(movieDetailFragment);
+
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setTitle(movie.getTitle());
+        }
 
         // TODO: Load saved state if available
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
