@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.codingchallenge.samlee.imdb.BasePresenter;
 import com.codingchallenge.samlee.imdb.BaseView;
-import com.codingchallenge.samlee.imdb.model.Movie;
+import com.codingchallenge.samlee.imdb.data.Movie;
 
 import java.util.List;
 

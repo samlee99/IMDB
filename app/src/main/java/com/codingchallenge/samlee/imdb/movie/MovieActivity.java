@@ -1,25 +1,15 @@
 package com.codingchallenge.samlee.imdb.movie;
 
-import android.content.AsyncTaskLoader;
-import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 
 import com.codingchallenge.samlee.imdb.R;
-import com.codingchallenge.samlee.imdb.model.InTheater;
-import com.codingchallenge.samlee.imdb.model.Result;
-import com.google.gson.Gson;
-
-import java.util.List;
 
 /**
  * Created by samlee on 3/2/18.

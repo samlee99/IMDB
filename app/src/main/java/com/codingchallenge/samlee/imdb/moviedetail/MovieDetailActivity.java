@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.codingchallenge.samlee.imdb.R;
-import com.codingchallenge.samlee.imdb.model.Movie;
+import com.codingchallenge.samlee.imdb.data.Movie;
 
 /**
  * Created by Sam on 3/4/2018.

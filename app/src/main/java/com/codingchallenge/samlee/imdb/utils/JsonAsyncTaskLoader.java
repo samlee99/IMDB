@@ -5,13 +5,10 @@ import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
-import com.codingchallenge.samlee.imdb.model.InTheater;
-import com.codingchallenge.samlee.imdb.model.Movie;
-import com.codingchallenge.samlee.imdb.model.Result;
+import com.codingchallenge.samlee.imdb.data.InTheater;
+import com.codingchallenge.samlee.imdb.data.Movie;
+import com.codingchallenge.samlee.imdb.data.Result;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;

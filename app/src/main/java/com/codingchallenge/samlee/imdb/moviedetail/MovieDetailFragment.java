@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codingchallenge.samlee.imdb.R;
-import com.codingchallenge.samlee.imdb.model.Movie;
-import com.codingchallenge.samlee.imdb.utils.ConvertUtil;
 import com.squareup.picasso.Picasso;
 
 /**

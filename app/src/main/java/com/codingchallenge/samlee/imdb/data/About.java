@@ -1,4 +1,4 @@
-package com.codingchallenge.samlee.imdb.model;
+package com.codingchallenge.samlee.imdb.data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

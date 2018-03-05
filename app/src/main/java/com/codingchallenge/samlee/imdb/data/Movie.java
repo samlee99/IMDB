@@ -1,4 +1,4 @@
-package com.codingchallenge.samlee.imdb.model;
+package com.codingchallenge.samlee.imdb.data;
 
 import com.codingchallenge.samlee.imdb.utils.ConvertUtil;
 import com.google.gson.annotations.Expose;

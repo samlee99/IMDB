@@ -1,7 +1,6 @@
 package com.codingchallenge.samlee.imdb.movie;
 
 import android.content.Intent;
-import android.content.Loader;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,9 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.codingchallenge.samlee.imdb.R;
-import com.codingchallenge.samlee.imdb.model.Movie;
+import com.codingchallenge.samlee.imdb.data.Movie;
 import com.codingchallenge.samlee.imdb.moviedetail.MovieDetailActivity;
-import com.codingchallenge.samlee.imdb.utils.ConvertUtil;
 import com.codingchallenge.samlee.imdb.utils.JsonAsyncTaskLoader;
 import com.squareup.picasso.Picasso;
 
@@ -60,7 +58,9 @@ public class MovieFragment extends Fragment implements MovieContract.View {
         public void onLoadFinished(android.support.v4.content.Loader<List<Movie>> loader, List<Movie> data) {
             Log.d(TAG, "onLoadFinished called");
             showMovieList(data);
-            isLoaderRestarting = false;
+            if (isLoaderRestarting) {
+                isLoaderRestarting = false;
+            }
         }
 
         @Override

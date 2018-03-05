@@ -1,7 +1,6 @@
 package com.codingchallenge.samlee.imdb.moviedetail;
 
-import com.codingchallenge.samlee.imdb.model.Movie;
-import com.codingchallenge.samlee.imdb.utils.ConvertUtil;
+import com.codingchallenge.samlee.imdb.data.Movie;
 
 /**
  * Created by Sam on 3/4/2018.
