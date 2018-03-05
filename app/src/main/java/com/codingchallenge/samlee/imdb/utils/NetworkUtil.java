@@ -11,6 +11,7 @@ import java.net.URL;
  */
 
 public class NetworkUtil {
+
     public static String getJSON(String url) {
         HttpURLConnection con = null;
         try {

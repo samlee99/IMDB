@@ -1,6 +1,5 @@
 package com.codingchallenge.samlee.imdb.utils;
 
-
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
@@ -40,11 +39,12 @@ public class JsonAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
     @Override
     public List<Movie> loadInBackground() {
         Log.d(TAG, "loadInBackground() called");
+        movies = new ArrayList<>();
 
         String url = "http://api.myapifilms.com/imdb/inTheaters?token=159ab6ca-37ea-4351-ba42-9ef903beacc3&format=json&language=en-us";
-        String json = NetworkUtil.getJSON(url);
 
-        movies = new ArrayList<>();
+        HttpRequest httpRequest = HttpRequest.get(url);
+        String json = httpRequest.body();
 
         Gson gson = new Gson();
         Result result = gson.fromJson(json, Result.class);
