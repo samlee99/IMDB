@@ -13,6 +13,11 @@ import android.widget.Toast;
 
 
 import com.codingchallenge.samlee.imdb.R;
+import com.codingchallenge.samlee.imdb.model.InTheater;
+import com.codingchallenge.samlee.imdb.model.Result;
+import com.google.gson.Gson;
+
+import java.util.List;
 
 /**
  * Created by samlee on 3/2/18.

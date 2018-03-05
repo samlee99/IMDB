@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:weightSum="100">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -20,13 +21,10 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </android.support.design.widget.AppBarLayout>
 
-
-
     <FrameLayout
         android:id="@+id/contentFrame"
-        android:layout_marginTop="10dp"
         android:layout_below="@id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</RelativeLayout>
+</LinearLayout>
