@@ -43,8 +43,6 @@ public class MovieFragment extends Fragment implements MovieContract.View {
 
     private ProgressBar mProgressBar;
 
-    private boolean isLoaderRunning = false;
-
     private static int id = 20;
 
     private LoaderManager.LoaderCallbacks<List<Movie>> mLoaderCallbacks = new LoaderManager.LoaderCallbacks<List<Movie>>() {
@@ -59,9 +57,7 @@ public class MovieFragment extends Fragment implements MovieContract.View {
         @Override
         public void onLoadFinished(android.support.v4.content.Loader<List<Movie>> loader, List<Movie> data) {
             Log.d(TAG, "onLoadFinished called");
-            showMovieList();
-            mMovieAdapter.setData(data);
-            isLoaderRunning = false;
+            showMovieList(data);
         }
 
         @Override
@@ -107,8 +103,12 @@ public class MovieFragment extends Fragment implements MovieContract.View {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mPresenter.start();
+    }
 
-        getActivity().getSupportLoaderManager().initLoader(id, null, mLoaderCallbacks);
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -125,19 +125,22 @@ public class MovieFragment extends Fragment implements MovieContract.View {
     }
 
     @Override
-    public void showMovieList() {
+    public void showMovieList(List<Movie> movies) {
+        mMovieAdapter.setData(movies);
+
         mProgressBar.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void refresh() {
-        getActivity().getSupportLoaderManager().restartLoader(id, null, mLoaderCallbacks);
+    public void startLoader() {
+        getActivity().getSupportLoaderManager().initLoader(id, null, mLoaderCallbacks);
     }
 
     @Override
-    public boolean isActive() {
-        return isAdded();
+    public void refresh() {
+        // incrementing id before initiating loader so that it does NOT use the cached return values.
+        getActivity().getSupportLoaderManager().initLoader(++id, null, mLoaderCallbacks);
     }
 
     @Override

@@ -16,15 +16,16 @@ public interface MovieContract {
 
     interface View extends BaseView<Presenter> {
         void showMovieDetailsActivity(@NonNull Movie movie);
-        void showMovieList();
+        void showMovieList(List<Movie> movies);
         void showLoadingScreen();
         void refresh();
-
-        boolean isActive();
+        void startLoader();
     }
 
     interface Presenter extends BasePresenter<View> {
         void viewMovieDetailsClick(@NonNull Movie movie);
         void refreshListClick();
+
+        void start();
     }
 }

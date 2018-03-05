@@ -40,15 +40,13 @@ public class MovieDetailActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
-        mMovieDetailPresenter = new MovieDetailPresenter(movieDetailFragment);
+        mMovieDetailPresenter = new MovieDetailPresenter(movieDetailFragment, movie);
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setTitle(movie.getTitle());
         }
-
-        // TODO: Load saved state if available
     }
 
     @Override

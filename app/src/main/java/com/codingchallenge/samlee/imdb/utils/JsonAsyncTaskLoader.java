@@ -52,7 +52,7 @@ public class JsonAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
         Gson gson = new Gson();
         Result result = gson.fromJson(json, Result.class);
 
-        if (result.getData() != null) {
+        if (result != null && result.getData() != null) {
             List<InTheater> inTheaterList = result.getData().getInTheaters();
             for (InTheater theater : inTheaterList) {
                 movies.addAll(theater.getMovies());

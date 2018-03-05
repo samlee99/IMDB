@@ -50,23 +50,42 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
         mMovieLanguageTextView = root.findViewById(R.id.movieLanguageTextView);
         mMoviePlotTextView = root.findViewById(R.id.moviePlotTextView);
 
-        Movie movie = (Movie)getActivity().getIntent().getSerializableExtra("movieObject");
-
-        String runtimeAndRated = (movie.getRuntime() == null ? "" : ConvertUtil.convertMinutesToHrMin(movie.getRuntime()) + " | ") +
-                (movie.getRated() == null ? "Not rated" : movie.getRated());
-
-        String genres = movie.getGenres().toString().replace("[", "").replace("]","");
-        String directors = movie.getDirectors() == null ? "N/A" : movie.getDirectors().get(0).getName();
-        String languages = (movie.getLanguages() == null || movie.getLanguages().size() < 1) ?
-                "N/A" : movie.getLanguages().toString().replace("[","").replace("]","");
-
-        Picasso.with(getContext()).load(movie.getUrlPoster()).fit().into(mMovieCoverImageView);
-        mMovieRuntimeAndRatedTextView.setText(runtimeAndRated);
-        mMovieGenreTextView.setText(genres);
-        mMovieDirectorTextView.setText(directors);
-        mMovieLanguageTextView.setText(languages);
-        mMoviePlotTextView.setText(movie.getPlot());
-
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
+    }
+
+    @Override
+    public void showCoverImage(String url) {
+        Picasso.with(getContext()).load(url).fit().into(mMovieCoverImageView);
+    }
+
+    @Override
+    public void showRuntimeAndRated(String runtimeAndRated) {
+        mMovieRuntimeAndRatedTextView.setText(runtimeAndRated);
+    }
+
+    @Override
+    public void showGenres(String genres) {
+        mMovieGenreTextView.setText(genres);
+    }
+
+    @Override
+    public void showDirector(String director) {
+        mMovieDirectorTextView.setText(director);
+    }
+
+    @Override
+    public void showLanguages(String languages) {
+        mMovieLanguageTextView.setText(languages);
+    }
+
+    @Override
+    public void showPlot(String plot) {
+        mMoviePlotTextView.setText(plot);
     }
 }
