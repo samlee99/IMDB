@@ -27,8 +27,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Movie movie = (Movie)getIntent().getSerializableExtra("movieObject");
-
         MovieDetailFragment movieDetailFragment = (MovieDetailFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
 
         if (movieDetailFragment == null) {
@@ -40,12 +38,12 @@ public class MovieDetailActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
+        Movie movie = (Movie)getIntent().getSerializableExtra("movieObject");
         mMovieDetailPresenter = new MovieDetailPresenter(movieDetailFragment, movie);
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setTitle(movie.getTitle());
         }
     }
 

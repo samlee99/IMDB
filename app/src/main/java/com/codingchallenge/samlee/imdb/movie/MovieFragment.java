@@ -43,6 +43,8 @@ public class MovieFragment extends Fragment implements MovieContract.View {
 
     private ProgressBar mProgressBar;
 
+    private boolean isLoaderRestarting = false;
+
     private static int id = 20;
 
     private LoaderManager.LoaderCallbacks<List<Movie>> mLoaderCallbacks = new LoaderManager.LoaderCallbacks<List<Movie>>() {
@@ -58,6 +60,7 @@ public class MovieFragment extends Fragment implements MovieContract.View {
         public void onLoadFinished(android.support.v4.content.Loader<List<Movie>> loader, List<Movie> data) {
             Log.d(TAG, "onLoadFinished called");
             showMovieList(data);
+            isLoaderRestarting = false;
         }
 
         @Override
@@ -139,8 +142,10 @@ public class MovieFragment extends Fragment implements MovieContract.View {
 
     @Override
     public void refresh() {
-        // incrementing id before initiating loader so that it does NOT use the cached return values.
-        getActivity().getSupportLoaderManager().initLoader(++id, null, mLoaderCallbacks);
+        if (!isLoaderRestarting) {
+            getActivity().getSupportLoaderManager().restartLoader(id, null, mLoaderCallbacks);
+            isLoaderRestarting = true;
+        }
     }
 
     @Override
@@ -167,15 +172,13 @@ public class MovieFragment extends Fragment implements MovieContract.View {
 
         @Override
         public void onBindViewHolder(MovieViewHolder holder, int position) {
-            // TODO: Initialize all the movie photos, titles, details, and onclicks.
-
             final Movie movie = mMovieList.get(position);
 
             Picasso.with(holder.mMovieCoverImageView.getContext()).load(movie.getUrlPoster()).fit().into(holder.mMovieCoverImageView);
             holder.mMovieTitleTextView.setText(movie.getTitle());
 
             String rated = movie.getRated();
-            String runtime = ConvertUtil.convertMinutesToHrMin(movie.getRuntime());
+            String runtime = movie.getRuntime();
             String genre = movie.getGenres().get(0);
             String ratedRuntimeAndGenreString = (rated == null ? "Not Rated" : rated) + " | " + (runtime == null ? genre : runtime + " | " + genre);
             holder.mMovieDetailTextView.setText(ratedRuntimeAndGenreString);

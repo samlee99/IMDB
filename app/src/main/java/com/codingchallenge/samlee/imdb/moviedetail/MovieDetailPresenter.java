@@ -15,6 +15,8 @@ public class MovieDetailPresenter implements MovieDetailContract.Presenter {
     public MovieDetailPresenter(MovieDetailContract.View view, Movie movie) {
         this.mMovieDetailView = view;
         this.movie = movie;
+
+        mMovieDetailView.setPresenter(this);
     }
 
     @Override
@@ -23,13 +25,14 @@ public class MovieDetailPresenter implements MovieDetailContract.Presenter {
     }
 
     private void fillTextViews() {
-        String runtimeAndRated = (movie.getRuntime() == null ? "" : ConvertUtil.convertMinutesToHrMin(movie.getRuntime()) + " | ") +
+        String runtimeAndRated = (movie.getRuntime() == null ? "" : movie.getRuntime() + " | ") +
                 (movie.getRated() == null ? "Not rated" : movie.getRated());
         String genres = movie.getGenres().toString().replace("[", "").replace("]","");
         String director = movie.getDirectors() == null ? "N/A" : movie.getDirectors().get(0).getName();
         String languages = (movie.getLanguages() == null || movie.getLanguages().size() < 1) ?
                 "N/A" : movie.getLanguages().toString().replace("[","").replace("]","");
 
+        mMovieDetailView.showMovieTitleToolbar(movie.getTitle());
         mMovieDetailView.showCoverImage(movie.getUrlPoster());
         mMovieDetailView.showRuntimeAndRated(runtimeAndRated);
         mMovieDetailView.showGenres(genres);

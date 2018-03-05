@@ -10,6 +10,7 @@ import com.codingchallenge.samlee.imdb.BaseView;
 public interface MovieDetailContract {
 
     interface View extends BaseView<Presenter> {
+        void showMovieTitleToolbar(String movieTitle);
         void showCoverImage(String url);
         void showRuntimeAndRated(String runtimeAndRated);
         void showGenres(String genres);

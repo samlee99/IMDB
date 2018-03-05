@@ -1,5 +1,6 @@
 package com.codingchallenge.samlee.imdb.model;
 
+import com.codingchallenge.samlee.imdb.utils.ConvertUtil;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -121,7 +122,7 @@ public class Movie implements Serializable {
     }
 
     public String getRuntime() {
-        return runtime;
+        return ConvertUtil.convertMinutesToHrMin(runtime);
     }
 
     public void setRuntime(String runtime) {

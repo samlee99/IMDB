@@ -3,6 +3,7 @@ package com.codingchallenge.samlee.imdb.moviedetail;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,14 @@ public class MovieDetailFragment extends Fragment implements MovieDetailContract
     public void onResume() {
         super.onResume();
         mPresenter.start();
+    }
+
+    @Override
+    public void showMovieTitleToolbar(String movieTitle) {
+        AppCompatActivity activity = (AppCompatActivity)getActivity();
+        if (activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setTitle(movieTitle);
+        }
     }
 
     @Override
