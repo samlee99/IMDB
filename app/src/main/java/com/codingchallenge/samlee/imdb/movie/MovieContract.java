@@ -25,7 +25,5 @@ public interface MovieContract {
     interface Presenter extends BasePresenter<View> {
         void viewMovieDetailsClick(@NonNull Movie movie);
         void refreshListClick();
-
-        void start();
     }
 }

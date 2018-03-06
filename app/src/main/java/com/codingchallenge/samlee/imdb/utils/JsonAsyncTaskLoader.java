@@ -16,6 +16,7 @@ import java.util.List;
  * Created by Sam on 3/4/2018.
  */
 
+// Chose to use an AsyncTaskLoader to prevent the asynctask from restarting during orientation change.
 public class JsonAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
 
     private static final String TAG = "JsonAsyncTaskLoader";
@@ -57,11 +58,6 @@ public class JsonAsyncTaskLoader extends AsyncTaskLoader<List<Movie>> {
         }
 
         return movies;
-    }
-
-    @Override
-    protected void onStopLoading() {
-        super.onStopLoading();
     }
 
     @Override

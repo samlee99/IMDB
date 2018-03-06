@@ -23,6 +23,7 @@ public class MovieDetailPresenter implements MovieDetailContract.Presenter {
         fillTextViews();
     }
 
+    // Should I make these into separate methods or would this suffice for the presenter?
     private void fillTextViews() {
         String runtimeAndRated = (movie.getRuntime() == null ? "" : movie.getRuntime() + " | ") +
                 (movie.getRated() == null ? "Not rated" : movie.getRated());

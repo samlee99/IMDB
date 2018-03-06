@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,7 +30,7 @@ import java.util.List;
  * Created by samlee on 3/2/18.
  */
 
-public class MovieFragment extends Fragment implements MovieContract.View {
+public class MovieFragment extends Fragment implements MovieContract.View, LoaderManager.LoaderCallbacks<List<Movie>> {
 
     private static final String TAG = "MovieFragment";
 
@@ -44,32 +45,6 @@ public class MovieFragment extends Fragment implements MovieContract.View {
     private boolean isLoaderRestarting = false;
 
     private static int id = 20;
-
-    private LoaderManager.LoaderCallbacks<List<Movie>> mLoaderCallbacks = new LoaderManager.LoaderCallbacks<List<Movie>>() {
-
-        @Override
-        public android.support.v4.content.Loader<List<Movie>> onCreateLoader(int i, Bundle bundle) {
-            Log.d(TAG, "onCreateLoader called");
-            showLoadingScreen();
-            return new JsonAsyncTaskLoader(getActivity());
-        }
-
-        @Override
-        public void onLoadFinished(android.support.v4.content.Loader<List<Movie>> loader, List<Movie> data) {
-            Log.d(TAG, "onLoadFinished called");
-            showMovieList(data);
-            if (isLoaderRestarting) {
-                isLoaderRestarting = false;
-            }
-        }
-
-        @Override
-        public void onLoaderReset(android.support.v4.content.Loader<List<Movie>> loader) {
-            Log.d(TAG, "onLoaderReset called");
-            mMovieAdapter = null;
-            mRecyclerView.setAdapter(null);
-        }
-    };
 
     private MovieItemListener mMovieItemListener = new MovieItemListener() {
         @Override
@@ -137,13 +112,13 @@ public class MovieFragment extends Fragment implements MovieContract.View {
 
     @Override
     public void startLoader() {
-        getActivity().getSupportLoaderManager().initLoader(id, null, mLoaderCallbacks);
+        getActivity().getSupportLoaderManager().initLoader(id, null, this);
     }
 
     @Override
     public void refresh() {
         if (!isLoaderRestarting) {
-            getActivity().getSupportLoaderManager().restartLoader(id, null, mLoaderCallbacks);
+            getActivity().getSupportLoaderManager().restartLoader(id, null, this);
             isLoaderRestarting = true;
         }
     }
@@ -151,6 +126,29 @@ public class MovieFragment extends Fragment implements MovieContract.View {
     @Override
     public void setPresenter(MovieContract.Presenter presenter) {
         this.mPresenter = presenter;
+    }
+
+    @Override
+    public Loader<List<Movie>> onCreateLoader(int id, Bundle args) {
+        Log.d(TAG, "onCreateLoader called");
+        showLoadingScreen();
+        return new JsonAsyncTaskLoader(getActivity());
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<Movie>> loader, List<Movie> data) {
+        Log.d(TAG, "onLoadFinished called");
+        showMovieList(data);
+        if (isLoaderRestarting) {
+            isLoaderRestarting = false;
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<Movie>> loader) {
+        Log.d(TAG, "onLoaderReset called");
+        mMovieAdapter = null;
+        mRecyclerView.setAdapter(null);
     }
 
     public static class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {

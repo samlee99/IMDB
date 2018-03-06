@@ -18,7 +18,6 @@ import com.codingchallenge.samlee.imdb.R;
 public class MovieActivity extends AppCompatActivity {
 
     private MoviePresenter mMoviePresenter;
-    private MovieFragment mMovieFragment;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +26,7 @@ public class MovieActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mMovieFragment = (MovieFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        MovieFragment mMovieFragment = (MovieFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
 
         if (mMovieFragment == null) {
             //Create the fragment
